@@ -26,12 +26,12 @@
 //     }, '');
 // }
 
-function reverse(str) {
+// function reverse(str) {
+//     return str.split('').reduce((reversed, char) => char + reversed, '');
+// }
+
+const reverse = (str) => {
     return str.split('').reduce((reversed, char) => char + reversed, '');
 }
-
-// const reverse = (str) => {
-
-// }
 
 module.exports = reverse;
