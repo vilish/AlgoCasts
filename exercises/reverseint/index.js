@@ -9,26 +9,20 @@
 //   reverseInt(-90) === -9
 
 function reverseInt(n) {
-    let isNegative = false;
-    if (Math.sign(n) === -1) {
-        isNegative = true;
-        n = Math.abs(n);
-    }
-
-    let reversed = '';
-
-    reversed = n
+    let reversedString = n
         .toString()
         .split('')
         .reduce((reversed, char) => char + reversed, '');
 
+    return parseInt(reversedString) * Math.sign(n);
 
-    console.log('reversed   ' + reversed);
+    // if (n < 0) {
+    //     return parseInt(reversed) * -1;
+    // }
 
-    return parseInt(reversed) * (isNegative ? -1 : 1);
-
+    // return parseInt(reversed);
 }
 
-reverseInt(100);
+
 
 module.exports = reverseInt;
