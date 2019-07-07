@@ -31,6 +31,12 @@ const maxChar = (str) => {
 
     for (let character of str) {
         chars[character] = chars[character] + 1 || 1;
+
+        // if (!chars[character]) {
+        //     chars[character] = 1;
+        // } else {
+        //     chars[character]++;
+        // }
     }
 
     for (let index in chars) {
