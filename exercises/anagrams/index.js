@@ -11,28 +11,29 @@
 function anagrams(stringA, stringB) {
     let wordRegex = /[^\w]/g;
     // get only letters from given strings
-    let wordA = stringA.replace(wordRegex, "").toLowerCase();
-    let wordB = stringB.replace(wordRegex, "").toLowerCase();;
+    let aLetters = stringA.replace(wordRegex, "").toLowerCase();
+    let bLetters = stringB.replace(wordRegex, "").toLowerCase();;
 
     // get map of letter and their count in the word
-    let wordAMap = getLetterCountMap(wordA);
-    let wordBMap = getLetterCountMap(wordB);
+    let aCharMap = buildCharMap(aLetters);
+    let bCharMap = buildCharMap(bLetters);
 
-    let wordACounter = 0;
-    let wordBCounter = 0;
-    for (let i in wordAMap) wordACounter++;
-    for (let i in wordBMap) wordBCounter++;
+    let aLettersCount = Object.keys(aCharMap).length;
+    let bLettersCount = Object.keys(bCharMap).length;;
+
+    // for (let i in stringACharMap) wordACounter++;
+    // for (let i in stringBCharMap) wordBCounter++;
 
     let match = false;
 
     // length should be equal
-    if (wordACounter === wordBCounter) {
+    if (aLettersCount === bLettersCount) {
         // loop are letter in wordA
-        for (let letterInWordA in wordAMap) {
+        for (let aLetter in aCharMap) {
             match = false;
-            for (let letterInWordB in wordBMap) {
-                if (letterInWordA === letterInWordB &&
-                    wordAMap[letterInWordA] == wordBMap[letterInWordB]) {
+            for (let bLetter in bCharMap) {
+                if (aLetter === bLetter &&
+                    aCharMap[aLetter] == bCharMap[bLetter]) {
                     match = true;
                     break;
                 }
@@ -47,12 +48,12 @@ function anagrams(stringA, stringB) {
 
 }
 
-const getLetterCountMap = (word) => {
-    let wordMap = {};
-    for (let characters of word) {
-        wordMap[characters] = wordMap[characters] + 1 || 1;
+const buildCharMap = (word) => {
+    let charMap = {};
+    for (let character of word) {
+        charMap[character] = charMap[character] + 1 || 1;
     }
-    return wordMap
+    return charMap
 }
 
 module.exports = anagrams;
