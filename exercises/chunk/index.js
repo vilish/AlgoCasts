@@ -8,33 +8,55 @@
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
-function chunk(array, size) {
+const chunk = (array, size) => {
 
-    let chunks = [];
-    let chunked = [];
+    const chunked = [];
+    let index = 0;
 
-    //loop all the array index
-    for (let element of array) {
-        let lastChunks = chunked[chunked.length - 1];
-
-        if (!lastChunks || lastChunks.length === size) {
-            chunked.push([element])
-        } else {
-            lastChunks.push(element);
-        }
-
-        // //assign chunks
-        // chunks.push(element);
-
-        // //if chunks reaches the max size or end of loop -> add chunks to chunksArr
-        // if (chunks.length === size || index == array.length - 1) {
-        //     chunked.push(chunks);
-        //     chunks = [];
-        // }
+    while (index < array.length) {
+        chunked.push(array.slice(index, index + size));
+        index += size;
     }
-    // return the chunksArr
-    return chunked
+    return chunked;
 }
+
+// function chunk(array, size) {
+
+//     let chunked = [];
+
+//     //loop all the array index
+//     for (let element of array) {
+//         let lastChunks = chunked[chunked.length - 1];
+
+//         if (!lastChunks || lastChunks.length === size) {
+//             chunked.push([element])
+//         } else {
+//             lastChunks.push(element);
+//         }
+
+//     }
+//     // return the chunksArr
+//     return chunked
+// }
+
+// function chunk(array, size) {
+//     let chunks = [];
+//     let chunked = [];
+
+//     //loop all the array index
+//     for (let element of array) {
+//         //assign chunks
+//         chunks.push(element);
+
+//         //if chunks reaches the max size or end of loop -> add chunks to chunksArr
+//         if (chunks.length === size || element == array[array.length - 1]) {
+//             chunked.push(chunks);
+//             chunks = [];
+//         }
+//     }
+//     // return the chunksArr
+//     return chunked
+// }
 
 
 
