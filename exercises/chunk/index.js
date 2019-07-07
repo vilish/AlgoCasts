@@ -11,22 +11,29 @@
 function chunk(array, size) {
 
     let chunks = [];
-    let chunksArr = [];
-    let counter = 0;
+    let chunked = [];
 
     //loop all the array index
-    for (let index in array) {
-        //assign chunks
-        chunks[index % size] = array[index];
+    for (let element of array) {
+        let lastChunks = chunked[chunked.length - 1];
 
-        //if chunks reaches the max size or end of loop -> add chunks to chunksArr
-        if (chunks.length === size || index == array.length - 1) {
-            chunksArr[counter++] = chunks;
-            chunks = [];
+        if (!lastChunks || lastChunks.length === size) {
+            chunked.push([element])
+        } else {
+            lastChunks.push(element);
         }
+
+        // //assign chunks
+        // chunks.push(element);
+
+        // //if chunks reaches the max size or end of loop -> add chunks to chunksArr
+        // if (chunks.length === size || index == array.length - 1) {
+        //     chunked.push(chunks);
+        //     chunks = [];
+        // }
     }
     // return the chunksArr
-    return chunksArr
+    return chunked
 }
 
 
