@@ -17,21 +17,43 @@
 //       '### '
 //       '####'
 
-function steps(n) {
+// function steps(n) {
 
-    let stepMap = {};
-    for (i = 1; i <= n; i++) {
-        let step = '';
-        for (let j = 0; j < n; j++) {
-            if (j < i)
-                step += '#';
-            else
-                step += ' ';
-        }
-        console.log(step);
+//     for (row = 0; row < n; row++) {
+//         let step = '';
+//         for (let col = 0; col < n; col++) {
+//             if (col <= row)
+//                 step += '#';
+//             else
+//                 step += ' ';
+//         }
+//         console.log(step);
+//     }
+
+// }
+
+function steps(n, row = 0, stairs = '') {
+
+    // base case - end of problem
+    if (n === row)
+        return;
+
+    //result case - end of row and print stairs and go to next row invoation
+    if (stairs.length === n) {
+        console.log(stairs); // print stair for the given row
+        return steps(n, row + 1); // and call steps again for next row
+
     }
 
+    // how to assign stairs 
+    if (stairs.length <= row) {
+        stairs += '#';
+    } else {
+        stairs += ' ';
+    }
+
+    // call fn to updates stairs
+    steps(n, row, stairs);
 }
-steps(4);
 
 module.exports = steps;
