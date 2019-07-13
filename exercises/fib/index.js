@@ -27,15 +27,30 @@
 //     return num;
 // }
 
-// recursive solution
+// // iterative solution fibonacci series
 function fib(n) {
 
-    if (n === 0 || n === 1)
-        return n;
+    let results = [0, 1];
 
-    return fib(n - 1) + fib(n - 2);
+    for (let i = 2; i <= n; i++) {
+        // result[i]=results[i-1];results[i-2]; 
+        results.push(results[i - 1] + results[i - 2]);
+    }
 
+    let num = results[n];
+    console.log(num);
+    return num;
 }
+
+// // recursive solution
+// function fib(n) {
+
+//     if (n === 0 || n === 1) // n<2
+//         return n;
+
+//     return fib(n - 1) + fib(n - 2);
+
+// }
 
 // console.log(fib(2));
 // console.log(fib(3));
