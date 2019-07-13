@@ -8,30 +8,42 @@
 // Example:
 //   fib(4) === 3
 
+
+// // iterative solution
+// function fib(n) {
+
+//     if (n === 0 || n === 1)
+//         return n;
+
+//     let element1 = 0,
+//         element2 = 1;
+
+//     for (let i = 1; i < n; i++) {
+//         num = element1 + element2;
+//         element1 = element2;
+//         element2 = num;
+//     }
+//     // console.log(num);
+//     return num;
+// }
+
+// recursive solution
 function fib(n) {
 
     if (n === 0 || n === 1)
         return n;
 
-    let element1 = 0,
-        element2 = 1;
+    return fib(n - 1) + fib(n - 2);
 
-    for (let i = 1; i < n; i++) {
-        num = element1 + element2;
-        element1 = element2;
-        element2 = num;
-    }
-    // console.log(num);
-    return num;
 }
 
-// fib(2);
-// fib(3);
-// fib(4);
-// fib(5);
-// fib(6);
-// fib(7);
-// fib(8);
+// console.log(fib(2));
+// console.log(fib(3));
+// console.log(fib(4));
+// console.log(fib(5));
+// console.log(fib(6));
+// console.log(fib(7));
+// console.log(fib(8));
 // fib(9);
 // fib(39);
 
