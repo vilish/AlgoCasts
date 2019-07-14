@@ -16,6 +16,11 @@ class Queue {
   remove() {
     return this.data.pop();
   }
+
+  peek() {
+    // return this.data.length > 0 ? this.data[this.data.length - 1] : null;
+    return this.data[this.data.length - 1];
+  }
 }
 
 module.exports = Queue;
