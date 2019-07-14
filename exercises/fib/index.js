@@ -28,19 +28,19 @@
 // }
 
 // // iterative solution fibonacci series
-function fib(n) {
+// function fib(n) {
 
-    let results = [0, 1];
+//     let results = [0, 1];
 
-    for (let i = 2; i <= n; i++) {
-        // result[i]=results[i-1];results[i-2]; 
-        results.push(results[i - 1] + results[i - 2]);
-    }
+//     for (let i = 2; i <= n; i++) {
+//         // result[i]=results[i-1];results[i-2]; 
+//         results.push(results[i - 1] + results[i - 2]);
+//     }
 
-    let num = results[n];
-    console.log(num);
-    return num;
-}
+//     let num = results[n];
+//     console.log(num);
+//     return num;
+// }
 
 // // recursive solution
 // function fib(n) {
@@ -52,6 +52,43 @@ function fib(n) {
 
 // }
 
+// recursive solution
+// function fib(n, results = [0, 1]) {
+
+//     if (n === 0 || n === 1) // n<2
+//         return results[n];
+
+//     return fib(n - 1) + fib(n - 2);
+
+// }
+
+function memoizer(fn) {
+
+    let cache = {};
+    debugger;
+    return function (...args) {
+        if (cache[args]) {
+            return cache[args];
+        }
+        const result = fn.apply(this, args);
+        // cache.push(result);
+        cache[args] = result;
+        return result;
+    };
+
+}
+
+function slowFib(n) {
+    debugger;
+    if (n < 2)
+        return n;
+
+    return fib(n - 1) + fib(n - 2);
+
+}
+
+const fib = memoizer(slowFib);
+
 // console.log(fib(2));
 // console.log(fib(3));
 // console.log(fib(4));
@@ -59,7 +96,7 @@ function fib(n) {
 // console.log(fib(6));
 // console.log(fib(7));
 // console.log(fib(8));
-// fib(9);
+fib(4);
 // fib(39);
 
 module.exports = fib;
