@@ -66,13 +66,15 @@ function memoizer(fn) {
 
     let cache = {};
     debugger;
-    return function (...args) {
+    return function (args) {
+        debugger;
         if (cache[args]) {
             return cache[args];
         }
-        const result = fn.apply(this, args);
-        // cache.push(result);
+        debugger;
+        const result = fn.call(this, args);
         cache[args] = result;
+        debugger;
         return result;
     };
 
@@ -82,6 +84,7 @@ function slowFib(n) {
     debugger;
     if (n < 2)
         return n;
+    debugger;
 
     return fib(n - 1) + fib(n - 2);
 
