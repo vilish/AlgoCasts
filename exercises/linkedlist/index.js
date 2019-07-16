@@ -44,6 +44,26 @@ class LinkedList {
         }
         return node;
     }
+
+    clear() {
+        this.head = null;
+    }
+
+    removeFirst() {
+        this.head = this.head.next;
+    }
+
+    removeLast() {
+        let firstNode = this.head ? this.head.next : this.head;
+        debugger;
+        while (this.head && this.head.next) {
+            debugger;
+            this.head = this.head.next;
+        }
+        debugger;
+        this.head = null;
+        this.head = firstNode;
+    }
 }
 
 const l = new LinkedList();
@@ -51,6 +71,10 @@ const l = new LinkedList();
 l.insertFirst(1);
 l.insertFirst(2);
 l.insertFirst(3);
+l.removeLast();
 console.log(l.size());
 
-module.exports = {Node, LinkedList};
+module.exports = {
+    Node,
+    LinkedList
+};
