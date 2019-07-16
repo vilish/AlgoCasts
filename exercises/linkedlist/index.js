@@ -17,10 +17,10 @@ class LinkedList {
     }
 
     insertFirst(data) {
-        let node = new Node(data);
-        node.data = data;
-        node.next = this.head;
-        this.head = node;
+        this.head = new Node(data, this.head);
+        // let node = new Node(data);
+        // node.next = this.head;
+        // this.head = node;
     }
 
     size() {
@@ -39,7 +39,7 @@ class LinkedList {
 
     getLast() {
         let node = this.head;
-        while (node && node.next) {
+        while (node.next) {
             node = node.next;
         }
         return node;
@@ -50,20 +50,35 @@ class LinkedList {
     }
 
     removeFirst() {
+        if (!this.head)
+            return;
         this.head = this.head.next;
     }
 
     removeLast() {
-        let firstNode = this.head ? this.head.next : this.head;
-        debugger;
-        while (this.head && this.head.next) {
-            debugger;
-            this.head = this.head.next;
+        // if list is empty
+        if (!this.head)
+            return;
+
+        // if list has only one element
+        if (!this.head.next) {
+            this.head = null;
+            return;
         }
-        debugger;
-        this.head = null;
-        this.head = firstNode;
+
+        let node = this.head;
+        let next = node.next;
+
+        while (next.next) {
+            node = next;
+            next = next.next;
+        }
+        node.next = null;
+
+
     }
+
+
 }
 
 const l = new LinkedList();
