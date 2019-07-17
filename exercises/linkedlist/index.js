@@ -118,18 +118,37 @@ class LinkedList {
 
         }
 
+    }
+
+    isIndexOutOfBounds(index) {
+        return index > this.size() - 1 || index < 0;
+    }
+
+    insertAt(data, index) {
+        if (!index || index === 0) {
+            this.insertFirst(data);
+            return;
+        }
+
+        if (index >= this.size()) {
+            this.insertLast(data);
+            return;
+        }
+
+        let previous = this.getAt(index - 1);
+        previous.next = new Node(data, previous.next);
 
     }
 
 
 }
 
-// const l = new LinkedList();
+const l = new LinkedList();
 // // expect(l.size()).toEqual(0);
-// l.insertFirst(1);
-// l.insertFirst(2);
-// l.insertFirst(3);
-// l.removeLast();
+l.insertAt(1);
+l.insertAt(2);
+l.insertAt(3);
+l.insertAt(4, 2);
 // console.log(l.size());
 
 module.exports = {
