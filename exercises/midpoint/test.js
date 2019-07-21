@@ -45,7 +45,7 @@ describe('Midpoint returns the middle node of an even numbered list', () => {
     test('when the list no elements', () => {
         const l = new LinkedList();
         // l.insertLast('a');
-        expect(midpoint(l)).toBeUndefined();
+        expect(midpoint(l)).toBeNull();
     });
 
     test('when the list has 4 elements', () => {

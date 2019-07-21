@@ -16,17 +16,12 @@ const L = require('./linkedlist');
 const LinkedList = L.LinkedList;
 
 function midpoint(list) {
-    let slow = list.head;
-    if (!slow)
-        return;
-    let fast = slow.next;
+    let slow = list.getFirst();
+    let fast = list.head;
 
-    while (fast && fast.next) {
+    while (fast && fast.next && fast.next.next) {
         slow = slow.next;
-        if (fast.next.next) {
-            fast = fast.next.next;
-        } else
-            break;
+        fast = fast.next.next;
     }
 
     return slow;
