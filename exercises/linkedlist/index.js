@@ -109,12 +109,11 @@ class LinkedList {
 
         if (node) {
             let previous = this.getAt(index - 1);
-            let next = this.getAt(index + 1);
 
             if (previous)
-                previous.next = next;
+                previous.next = node.next;
             else
-                this.head = next;
+                this.head = node.next;
 
         }
 
@@ -137,6 +136,18 @@ class LinkedList {
 
         let previous = this.getAt(index - 1);
         previous.next = new Node(data, previous.next);
+
+    }
+
+    forEach(fn) {
+
+        let node = this.head;
+        let counter = 0;
+        while (node) {
+            fn(node, counter);
+            node = node.next;
+            counter++
+        }
 
     }
 
