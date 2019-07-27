@@ -34,11 +34,34 @@ function selectionSort(arr) {
 
 function mergeSort(arr) {
 
+    let half = Math.floor(arr.length / 2);
+    let left = arr.slice(0, half);
+    let right = arr.slice(half);
+
+    if (half > 1) {
+        left = mergeSort(left);
+        right = mergeSort(right);
+    } 
+
+    return merge(left, right);
+
 }
 
 function merge(left, right) {
+    const result = [];
 
+    while (left.length && right.length) {
+        if (left[0] < right[0])
+            result.push(left.shift())
+        else
+            result.push(right.shift());
+    }
+
+    return [...result, ...left, ...right];
 }
+
+const arr = [100, -40, 500, -124, 0, 21, 7];
+mergeSort(arr);
 
 module.exports = {
     bubbleSort,
