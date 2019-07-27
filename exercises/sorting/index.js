@@ -34,16 +34,14 @@ function selectionSort(arr) {
 
 function mergeSort(arr) {
 
-    let half = Math.floor(arr.length / 2);
-    let left = arr.slice(0, half);
-    let right = arr.slice(half);
+    if (arr.length === 1)
+        return arr;
 
-    if (half > 1) {
-        left = mergeSort(left);
-        right = mergeSort(right);
-    } 
+    let center = Math.floor(arr.length / 2);
+    let left = arr.slice(0, center);
+    let right = arr.slice(center);
 
-    return merge(left, right);
+    return merge(mergeSort(left), mergeSort(right));
 
 }
 
