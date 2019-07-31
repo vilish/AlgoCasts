@@ -49,4 +49,35 @@ const maxChar = (str) => {
     return maxChar;
 }
 
-module.exports = maxChar;
+// const unique = (str) => {
+//     const chars = {};
+
+//     for (let character of str) {
+//         chars[character] = chars[character] + 1 || 1;
+//     }
+//     console.log(chars);
+//     for (let i in chars) {
+//         if (chars[i] > 1)
+//             return false;
+//     }
+//     return true;
+// }
+
+const unique = (str) => {
+    const chars = {};
+
+    for (let character of str) {
+        if (!chars[character]) {
+            chars[character] = 1;
+        } else {
+            console.log('first duplicate char is   '+character);
+            return false;
+        }
+    }
+    return true;
+}
+
+module.exports = {
+    maxChar,
+    unique
+};

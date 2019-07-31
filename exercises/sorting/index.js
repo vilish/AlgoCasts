@@ -58,6 +58,66 @@ function merge(left, right) {
     return [...result, ...left, ...right];
 }
 
+function quicksort(arr) {
+    return quick(arr, 0, arr.length - 1);
+}
+
+function quick(arr, left, right) {
+    // // define left and right if this is the very begining.
+    // if (!left || !right) {
+    //     left = 0;
+    //     right = arr.length - 1;
+    // }
+
+    // exit if all comparison are done from left to right of pivot
+    if (left >= right) {
+        return;
+    }
+
+    // declare pivot;
+    let pivot = arr[Math.floor((left + right) / 2)];
+
+
+
+    // Step2. partition the array around the pivot - return the index of partion.
+    let index = partition(arr, left, right, pivot);
+
+
+    quicksort(arr, left, index - 1);
+    quicksort(arr, index, right);
+
+    return arr;
+
+}
+
+function partition(arr, left, right, pivot) {
+
+    while (left <= right) {
+        // move left untill you find an element bigger than pivot 
+        while (arr[left] < pivot)
+            left++;
+
+        // move right untill you find an element smaller or equals to pivot
+        while (arr[right] > pivot)
+            right--;
+
+        if (left <= right) {
+            swap(arr, left, right);
+            left++;
+            right--;
+        }
+    }
+    // when we get here. everything in partion will be in the right order
+    // now return the next partion point, which will be left.
+    return left;
+}
+
+function swap(arr, left, right) {
+    let temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+}
+
 const arr = [100, -40, 500, -124, 0, 21, 7];
 mergeSort(arr);
 
@@ -65,5 +125,6 @@ module.exports = {
     bubbleSort,
     selectionSort,
     mergeSort,
-    merge
+    merge,
+    quicksort
 };
