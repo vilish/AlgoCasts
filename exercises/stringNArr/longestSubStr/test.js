@@ -13,12 +13,17 @@ describe('Length of longest sub string', () => {
         expect(longestSubStrLen('abcabcbb')).toEqual(3);
     })
 
+    test('pwwkew -> longest sub string length is 3', () => {
+        expect(longestSubStrLen('pwwkew')).toEqual(3);
+    })
+
     test('bbbbb -> longest sub string length is 1', () => {
         expect(longestSubStrLen('bbbbb')).toEqual(1);
     })
 
-    test('pwwkewabcdefgha -> longest sub string length is 11 ', () => {
-        expect(longestSubStrLen('pwwkewabcdefgha')).toEqual(11);
+
+    test('pwwkewabcdefgha -> longest sub string length is 9 ', () => {
+        expect(longestSubStrLen('pwwkewabcdefgha')).toEqual(9);
     })
 
 });
@@ -31,6 +36,10 @@ describe('longest sub string', () => {
 
     test('abcabcbb -> longest sub string length is abc', () => {
         expect(longestSubStr('abcabcbb')).toEqual('abc');
+    })
+
+    test('pwwkew -> longest sub string length is wke', () => {
+        expect(longestSubStr('pwwkew')).toEqual('wke');
     })
 
     test('bbbbb -> longest sub string length is b', () => {

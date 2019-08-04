@@ -1,16 +1,20 @@
-const longestSubStrLen = (str) => {
+const longestSubStrLen = (s) => {
 
     let subStr = '';
     let startIndex = 0;
     let maxSize = 0;
+    let longestString = subStr;
 
     //loop through string 
-    str.split('').forEach((element) => {
+    s.split('').forEach((element) => {
         const indexInStr = subStr.indexOf(element);
         subStr += element;
 
         if (indexInStr < 0) {
             maxSize++;
+            if (longestString.length < subStr.length) {
+                longestString = subStr;
+            }
         } else {
             startIndex = indexInStr + 1;
             subStr = subStr.substring(startIndex);
@@ -18,7 +22,7 @@ const longestSubStrLen = (str) => {
 
     });
 
-    return maxSize;
+    return longestString.length;
 
 }
 
