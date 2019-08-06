@@ -7,7 +7,7 @@ describe("anagrams Test Suite", () => {
   });
 
   test('"hello" is an anagram of "llohe"', () => {
-    expect(anagrams('hello', 'llohe')).toBeTruthy();
+    expect(anagrams('Hello', 'llohe')).toBeTruthy();
   });
 
   test('"Whoa! Hi!" is an anagram of "Hi! Whoa! "', () => {

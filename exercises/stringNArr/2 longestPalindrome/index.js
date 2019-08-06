@@ -65,7 +65,7 @@ function longestPalindrome(s) {
         }
     }
 
-    for (let i = 0; i < s.length; i++) {
+    for (let i = 1; i < s.length-1; i++) {
         expandAroundMiddle(i - 1, i + 1);
         expandAroundMiddle(i, i + 1);
     }

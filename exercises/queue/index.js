@@ -19,20 +19,25 @@ class Queue {
         if (this.data.length < 1) {
             this.data.push(record)
         } else {
-            let temp = this.data[0];
+            let temp = this.data[0]; // if there is only one element there
             for (let i = 1; i < this.data.length; i++) {
                 temp = this.data[i];
                 this.data[i] = this.data[i - 1];
 
             }
-            this.data[0] = record;
+            //push the last saved element in the end.
             this.data.push(temp);
+
+            // now replace first element with given record.
+            this.data[0] = record;
+
         }
 
 
     }
 
     remove() {
+        // remove the first element entered
         return this.data.pop();
     }
 }

@@ -10,30 +10,37 @@ function validate(node, min = null, max = null) {
     console.log(node.data + "  " + node.left + "   " + node.right + "  min " +
         min + "  max  " + max);
     // left side
-    if (node.left && node.left.data >= node.data) {
-        return false;
-    }
 
-    if (node.left && node.left.data < node.data) {
+    if (node.left) {
+        if (node.left.data >= node.data) {
+            return false;
+        }
+
+        // right side good?
         if (max && node.left.right && node.left.right.data >= max) {
             return false;
         }
+
+        // test left side again
         validate(node.left, null, node.data)
     }
 
 
-
     //right side
-    if (node.right && node.right.data < node.data) {
-        return false;
-    }
+    if (node.right) {
+        if (node.right.data < node.data) {
+            return false;
+        }
 
 
-    if (node.right && node.right.data >= node.data) {
+        // left side good
         if (min && node.right.left && node.right.left.data >= min) {
             return false;
         }
-         validate(node.right, null, node.data)
+
+        // test right side again
+        validate(node.right, node.data, null)
+
     }
 
     return true;
