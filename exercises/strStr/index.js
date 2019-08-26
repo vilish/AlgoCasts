@@ -48,7 +48,6 @@ var strStr = function (haystack, needle) {
     let i = 0;
 
     while (i < haystack.length) {
-        console.log(i);
 
         if (haystack[i] === needle[0]) {
             let j = 1;
@@ -60,11 +59,11 @@ var strStr = function (haystack, needle) {
                 return i;
             }
 
-            i += j - 2;
-
         }
-
         i++;
+
+
+
     }
 
     return -1;
@@ -82,14 +81,14 @@ console.log(firstIndex);
 firstIndex = strStr("", "aaaa")
 console.log(firstIndex);
 
-// firstIndex = strStr("a", "a")
-// console.log(firstIndex);
+firstIndex = strStr("a", "a")
+console.log(firstIndex);
 
-// firstIndex = strStr("hello", "o")
-// console.log(firstIndex);
+firstIndex = strStr("hello", "o")
+console.log(firstIndex);
 
-// firstIndex = strStr("hello", "ll")
-// console.log(firstIndex);
+firstIndex = strStr("hello", "ll")
+console.log(firstIndex);
 
-// firstIndex = strStr("hello", "k")
-// console.log(firstIndex);
+firstIndex = strStr("hello", "k")
+console.log(firstIndex);
