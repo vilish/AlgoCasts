@@ -63,12 +63,6 @@ function quicksort(arr) {
 }
 
 function quick(arr, left, right) {
-    // // define left and right if this is the very begining.
-    // if (!left || !right) {
-    //     left = 0;
-    //     right = arr.length - 1;
-    // }
-
     // exit if all comparison are done from left to right of pivot
     if (left >= right) {
         return;

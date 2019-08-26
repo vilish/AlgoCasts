@@ -14,15 +14,58 @@ function reverseInt(n) {
         .split('')
         .reduce((reversed, char) => char + reversed, '');
 
-    return parseInt(reversedString) * Math.sign(n);
+    let result = parseInt(reversedString) * Math.sign(n);
 
-    // if (n < 0) {
-    //     return parseInt(reversed) * -1;
-    // }
+    if (result > 0 && result > (Math.pow(2, 31) - 1)) {
+        return 0;
+    }
 
-    // return parseInt(reversed);
+    if (result < 0 && result < (-Math.pow(2, 31))) {
+        return 0;
+    }
+
+    return result;
+
 }
 
+// function reverseInt(x) {
+//     let reverse = 0;
+//     let tentimes = 0;
+//     let sign = Math.sign(x);
+//     let num = parseInt(x);
+//     console.log(num);
+//     let lastDigit = 0;
+//     debugger;
+//     while (num > 10) {
+//         lastDigit = num % 10;
+//         console.log(num + " -  " + lastDigit + "  -  " + reverse + "  -  " + tentimes);
+//         reverse = parseInt(reverse * Math.pow(10, tentimes)) + parseInt(lastDigit);
+//         console.log(reverse)
+//         num = Math.floor(num / 10);
+//         tentimes++
+//     }
+
+//     if (num !== 0)
+//         reverse += lastDigit + reverse * Math.pow(10, tentimes);
+
+//     let result = parseInt(reverse) * Math.sign(x);
+
+//     console.log(result)
+
+//     if (result > 0 && result > (Math.pow(2, 31) - 1)) {
+//         return 0;
+//     }
+
+//     if (result < 0 && result < (-Math.pow(2, 31))) {
+//         return 0;
+//     }
+
+//     return result;
+
+// }
+
+
+reverseInt(1112);
 
 
 module.exports = reverseInt;
