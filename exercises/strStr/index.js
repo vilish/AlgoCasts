@@ -34,61 +34,130 @@
  * @param {string} needle
  * @return {number}
  */
+// var strStr = function (haystack, needle) {
+
+//     if (!needle) {
+//         return 0;
+//     }
+
+//     if (needle.length > haystack.length) {
+//         return -1;
+//     }
+
+
+//     let i = 0;
+
+//     while (i < haystack.length) {
+
+//         if (haystack[i] === needle[0]) {
+//             let j = 1;
+//             while (j < needle.length && haystack[i + j] === needle[j]) {
+//                 j++;
+//             }
+
+//             if (j === needle.length) {
+//                 return i;
+//             }
+
+//         }
+//         i++;
+
+
+
+//     }
+
+//     return -1;
+
+// };
+
 var strStr = function (haystack, needle) {
 
-    if (!needle) {
-        return 0;
-    }
+    let i = 0; // for haystack
+    let j = 0; // for needle
 
-    if (needle.length > haystack.length) {
-        return -1;
-    }
-
-
-    let i = 0;
+    let ips = computeIps(needle);
+    // console.log(ips);
 
     while (i < haystack.length) {
 
-        if (haystack[i] === needle[0]) {
-            let j = 1;
-            while (j < needle.length && haystack[i + j] === needle[j]) {
-                j++;
-            }
+        if (haystack[i] === needle[j]) {
+            i++;
+            j++;
+        }
 
-            if (j === needle.length) {
-                return i;
+        if (j === needle.length) {
+            return i - j;
+        }
+        // mismatch after j matches
+        else if (i < haystack.length && haystack[i] !== needle[j]) {
+            // Do not match lps[0..lps[j-1]] characters, 
+            // they will match anyway 
+            if (j !== 0) {
+                j = ips[j - 1];
+            } else {
+                i++;
             }
 
         }
-        i++;
-
-
 
     }
 
     return -1;
 
-};
+}
+
+
+
+function computeIps(str) {
+
+    let arr = str.split('');
+
+    let j = 0;
+    let i = 0;
+
+    let ips = [i++];
+
+    while (i < arr.length) {
+        if (arr[j] === arr[i]) {
+            ips.push(++j);
+            i++;
+        } else {
+
+            if (j != 0) {
+                j = ips[j - 1];
+            } else {
+                ips.push(j);
+                i++;
+            }
+        }
+    }
+
+    return ips;
+
+}
 
 module.exports = strStr;
 
-let firstIndex = strStr("mississippi", "issip")
-console.log(firstIndex);
+// computeIps();
 
-firstIndex = strStr("aaa", "aaaa")
-console.log(firstIndex);
 
-firstIndex = strStr("", "aaaa")
-console.log(firstIndex);
+// let firstIndex = strStr("mississippi", "issip")
+// console.log(firstIndex);
 
-firstIndex = strStr("a", "a")
-console.log(firstIndex);
+// firstIndex = strStr("aaa", "aaaa")
+// console.log(firstIndex);
 
-firstIndex = strStr("hello", "o")
-console.log(firstIndex);
+// firstIndex = strStr("", "aaaa")
+// console.log(firstIndex);
 
-firstIndex = strStr("hello", "ll")
-console.log(firstIndex);
+// firstIndex = strStr("a", "a")
+// console.log(firstIndex);
 
-firstIndex = strStr("hello", "k")
-console.log(firstIndex);
+// firstIndex = strStr("hello", "o")
+// console.log(firstIndex);
+
+// firstIndex = strStr("hello", "ll")
+// console.log(firstIndex);
+
+// firstIndex = strStr("hello", "k")
+// console.log(firstIndex);
