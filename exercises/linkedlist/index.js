@@ -154,6 +154,36 @@ class LinkedList {
 
 }
 
+
+
+function ListNode(val) {
+    this.val = val;
+    this.next = null;
+}
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+    if (!head) {
+        return head;
+    }
+
+    let node = head;
+    let current = new ListNode(node.val)
+
+    while (node.next) {
+        let nextNode = new ListNode(node.next.val);
+        nextNode.next = current;
+        node.next = node.next.next;
+        current = nextNode;
+    }
+
+    return current;
+
+};
+
 const l = new LinkedList();
 // // expect(l.size()).toEqual(0);
 l.insertAt(1);
