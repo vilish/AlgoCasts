@@ -33,4 +33,39 @@ const palindrome = (str) => {
 
 }
 
+// 680. Valid Palindrome II
+// Easy
+
+// Given a non-empty string s, you may delete at most one character. 
+// Judge whether you can make it a palindrome.
+
+const palindrome_valid = (str) => {
+    const len = str.length;
+    let skip = false;
+
+    let i = 0,
+        j = len - 1;
+
+    while (i <= j) {
+        debugger;
+        if (str[i] === str[j] || !skip) {
+            if (str[i] === str[j - 1])
+                j--;
+            else if (str[i + 1] === str[j])
+                i++;
+            skip = true;
+        } else {
+            console.log(str + "  is NOT valid palindrome")
+            return false;
+        }
+        debugger;
+        i++;
+        j--;
+    }
+    console.log(str + "  is valid palindrome")
+    return true;
+}
+
+palindrome_valid("abca")
+
 module.exports = palindrome;
