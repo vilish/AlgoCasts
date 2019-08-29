@@ -64,6 +64,45 @@ class Tree {
 
 }
 
+// 104. Easy Maximum Depth of Binary Tree
+
+function TreeNode(val) {
+    this.val = val;
+    this.left = this.right = null;
+}
+
+
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function (root) {
+
+    if (!root)
+        return 0;
+
+    let arr = [root];
+    let count = 1;
+
+    while (arr.length) {
+        const node = arr.shift();
+
+        if (node.left || node.right) {
+            count++;
+            if (node.left)
+                arr.push(node.left);
+            if (node.right)
+                arr.push(node.right);
+        }
+
+    }
+    console.log(count);
+    return count;
+
+};
+
+
+
 module.exports = {
     Tree,
     Node
