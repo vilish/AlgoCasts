@@ -8,29 +8,86 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-const anagrams = (stringA, stringB) => {
+// const anagrams = (stringA, stringB) => {
+
+//     let wordRegex = /[^\w]/g;
+//     // get only letters from given strings
+//     let aChars = stringA
+//         .replace(wordRegex, "")
+//         .toLowerCase();
+
+//     let bChars = stringB
+//         .replace(wordRegex, "")
+//         .toLowerCase();
+
+//     let match = false;
+
+//     if (aChars.length === bChars.length) {
+//         let wordASorted = aChars.split('').sort().join('');
+//         let wordBSorted = bChars.split('').sort().join('');
+
+//         if (wordASorted === wordBSorted)
+//             match = true;
+//     }
+//     return match;
+// }
+
+const anagrams = (s, p) => {
+
+    let result = [];
 
     let wordRegex = /[^\w]/g;
     // get only letters from given strings
-    let aChars = stringA
-        .replace(wordRegex, "")
-        .toLowerCase();
+    let aStr = s.replace(wordRegex, "").toLowerCase();
 
-    let bChars = stringB
-        .replace(wordRegex, "")
-        .toLowerCase();
+    let bStr = p.replace(wordRegex, "").toLowerCase();
 
-    let match = false;
-
-    if (aChars.length === bChars.length) {
-        let wordASorted = aChars.split('').sort().join('');
-        let wordBSorted = bChars.split('').sort().join('');
-
-        if (wordASorted === wordBSorted)
-            match = true;
+    if (aStr.length === 0 || bStr.length > aStr.length) {
+        return result;
     }
-    return match;
+
+    let aMap = {};
+    let bMap = {};
+
+    const k = p.length;
+
+    for (let i = 0; i < k; i++) {
+        aMap[s[i]] = aMap[s[i]] + 1 || 1;
+        bMap[p[i]] = bMap[p[i]] + 1 || 1;
+    }
+
+    if (isAnagram(aMap, bMap))
+        result.push(0);
+
+    //sliding window
+    for (let i = k; i < s.length; i++) {
+        aMap[s[i]] = aMap[s[i]] + 1 || 1;
+        aMap[s[i - k]]--;
+        if (isAnagram(aMap, bMap))
+            result.push(i - k + 1);
+
+    }
+
+    console.log(result);
+    
+    return result;
+
 }
+
+function isAnagram(aMap, bMap) {
+
+    const alphebets = 'abcdefghijklmnopqrstuvqxyz';
+    for (let char of alphebets) {
+        if (aMap[char] && aMap[char] !== bMap[char])
+            return false;
+
+    }
+
+    return true;
+}
+
+
+
 
 // function anagrams(stringA, stringB) {
 //     let wordRegex = /[^\w]/g;
@@ -79,5 +136,7 @@ const anagrams = (stringA, stringB) => {
 //     }
 //     return charMap
 // }
+
+anagrams("cbaebabacd", "abc");
 
 module.exports = anagrams;
