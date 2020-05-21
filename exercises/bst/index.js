@@ -13,34 +13,34 @@
 
 class Node {
 
-    constructor(data) {
-        this.data = data;
+    constructor(val) {
+        this.data = val;
         this.left = null;
         this.right = null;
     }
 
-    insert(data) {
-        let node = new Node(data);
+    insert(val) {
+        let node = new Node(val);
 
-        if (data < this.data) {
-            this.left ? this.left.insert(data) : this.left = node;
+        if (val < this.data) {
+            this.left ? this.left.insert(val) : this.left = node;
         } else {
-            this.right ? this.right.insert(data) : this.right = node;
+            this.right ? this.right.insert(val) : this.right = node;
         }
     }
 
 
 
 
-    contains(data) {
-        if (data === this.data) {
+    contains(val) {
+        if (val === this.data) {
             return this;
         }
 
-        if (data < this.data && this.left) {
-            return this.left.contains(data);
-        } else if (data > this.data && this.right) {
-            return this.right.contains(data);
+        if (val < this.data && this.left) {
+            return this.left.contains(val);
+        } else if (val > this.data && this.right) {
+            return this.right.contains(val);
         }
 
         return null;
